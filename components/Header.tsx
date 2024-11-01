@@ -15,7 +15,7 @@ export const Header = () => {
     },
     {
       text: 'You have another new message',
-      date: '2 hours ago',
+      date: '3 hours ago',
       read: false,
     },
   ]);
@@ -33,11 +33,11 @@ export const Header = () => {
           </DropdownMenuTrigger>
           <DropdownMenuContent align='end'>
             {notifications.map((notification: any, index: number) => (
-              <DropdownMenuItem key={index} className='p-1 bg-neutral-50 cursor-pointer transition flex items-start gap-2'>
+              <DropdownMenuItem key={index} className='cursor-pointer transition flex items-start gap-2 p-2 px-4'>
                 <div className={`h-3 w-3 my-1 rounded-full ${notification.read ? 'bg-transparent' : 'bg-green-500'}`} />
                 <div>
                   <p>{notification.text}</p>
-                  <p className='text-xs text-neutral-500'>{notification.date}</p>
+                  <p className='text-xs text-neutral-500 hover:bg-neutral-50'>{notification.date}</p>
                 </div>
               </DropdownMenuItem>
             ))}
