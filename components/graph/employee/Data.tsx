@@ -1,29 +1,31 @@
-export const data = [
-  {
-    "id": "Alice",
-    "data": [
-      { "x": "Communication", "y": 85 },
-      { "x": "Technique", "y": 90 },
-      { "x": "Gestion", "y": 70 },
-      { "x": "Créativité", "y": 75 }
-    ]
+// employeeData.ts
+export const employeeData = [
+  { category: 'Alice', value: 78, fill: 'hsl(var(--chart-1))' },
+  { category: 'Bob', value: 92, fill: 'hsl(var(--chart-2))' },
+  { category: 'Charlie', value: 67, fill: 'hsl(var(--chart-3))' },
+  { category: 'Dana', value: 85, fill: 'hsl(var(--chart-4))' },
+  { category: 'Eve', value: 74, fill: 'hsl(var(--chart-5))' },
+];
+
+export const employeeChartConfig = {
+  Alice: {
+    label: 'Alice',
+    color: 'hsl(var(--chart-1))',
   },
-  {
-    "id": "Bob",
-    "data": [
-      { "x": "Communication", "y": 75 },
-      { "x": "Technique", "y": 80 },
-      { "x": "Gestion", "y": 60 },
-      { "x": "Créativité", "y": 90 }
-    ]
+  Bob: {
+    label: 'Bob',
+    color: 'hsl(var(--chart-2))',
   },
-  {
-    "id": "Clara",
-    "data": [
-      { "x": "Communication", "y": 92 },
-      { "x": "Technique", "y": 88 },
-      { "x": "Gestion", "y": 85 },
-      { "x": "Créativité", "y": 80 }
-    ]
-  }
-]
+  Charlie: {
+    label: 'Charlie',
+    color: 'hsl(var(--chart-3))',
+  },
+  Dana: {
+    label: 'Dana',
+    color: 'hsl(var(--chart-4))',
+  },
+  Eve: {
+    label: 'Eve',
+    color: 'hsl(var(--chart-5))',
+  },
+};

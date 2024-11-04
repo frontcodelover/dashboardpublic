@@ -1,76 +1,60 @@
 'use client';
-import React from 'react'
-import { ResponsiveLine } from '@nivo/line';
-import { data } from '@/components/graph/clientSatisfaction/Data'
+
+import * as React from 'react';
+import { TrendingUp } from 'lucide-react';
+import { CartesianGrid, Line, LineChart, XAxis, YAxis, Legend, ResponsiveContainer } from 'recharts';
+
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
+import { clientSatisfactionData } from './Data';
+
+const chartConfig = {
+  serviceClient: {
+    label: 'Service Client',
+    color: 'hsl(var(--chart-1))',
+  },
+  qualiteProduit: {
+    label: 'Qualité Produit',
+    color: 'hsl(var(--chart-2))',
+  },
+  livraison: {
+    label: 'Livraison',
+    color: 'hsl(var(--chart-3))',
+  },
+};
 
 const ClientSatisfaction = () => {
-	return (
-		<ResponsiveLine
-		data={data}
-		margin={{ top: 20, right: 120, bottom: 50, left: 60 }}
-		xScale={{ type: 'point' }}
-		yScale={{
-			type: 'linear',
-			min: 'auto',
-			max: 'auto',
-			stacked: false,
-			reverse: false,
-		}}
-		yFormat=' >-.2f'
-		axisTop={null}
-		axisRight={null}
-		axisBottom={{
-			tickSize: 5,
-			tickPadding: 5,
-			tickRotation: 0,
-			legend: 'Période',
-			legendOffset: 36,
-			legendPosition: 'middle',
-		}}
-		axisLeft={{
-			tickSize: 5,
-			tickPadding: 5,
-			tickRotation: 0,
-			legend: 'Score de Satisfaction',
-			legendOffset: -40,
-			legendPosition: 'middle',
-		}}
-		pointSize={10}
-		pointColor={{ theme: 'background' }}
-		pointBorderWidth={2}
-		pointBorderColor={{ from: 'serieColor' }}
-		pointLabel='data.yFormatted'
-		pointLabelYOffset={-12}
-		enableTouchCrosshair={true}
-		useMesh={true}
-		legends={[
-			{
-				anchor: 'bottom-right',
-				direction: 'column',
-				justify: false,
-				translateX: 100,
-				translateY: 0,
-				itemsSpacing: 0,
-				itemDirection: 'left-to-right',
-				itemWidth: 80,
-				itemHeight: 20,
-				itemOpacity: 0.75,
-				symbolSize: 12,
-				symbolShape: 'circle',
-				symbolBorderColor: 'rgba(0, 0, 0, .5)',
-				effects: [
-					{
-						on: 'hover',
-						style: {
-							itemBackground: 'rgba(0, 0, 0, .03)',
-							itemOpacity: 1,
-						},
-					},
-				],
-			},
-		]}
-	/>
-	)
-}
+  return (
+    <Card className='rounded-xl'>
+      <CardHeader>
+        <CardDescription>Janvier - Août</CardDescription>
+      </CardHeader>
+      <CardContent className='p-4'>
+        <ChartContainer config={chartConfig} className='w-full h-80'>
+          <ResponsiveContainer width='100%' height={300}>
+            <LineChart
+              data={clientSatisfactionData}
+              margin={{
+                top: 20,
+                left: 10,
+                right: 10,
+                bottom: 20,
+              }}
+            >
+              <CartesianGrid vertical={false} />
+              <XAxis dataKey='month' tickLine={false} axisLine={false} tickMargin={8} tickFormatter={(value) => value.slice(0, 3)} />
+              <YAxis domain={[60, 100]} tickCount={5} width={30} tick={{ fontSize: 12 }} />
+              <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+              <Legend verticalAlign='bottom' height={36} />
+              <Line dataKey='serviceClient' type='monotone' stroke={chartConfig.serviceClient.color} strokeWidth={2} dot={false} name={chartConfig.serviceClient.label} />
+              <Line dataKey='qualiteProduit' type='monotone' stroke={chartConfig.qualiteProduit.color} strokeWidth={2} dot={false} name={chartConfig.qualiteProduit.label} />
+              <Line dataKey='livraison' type='monotone' stroke={chartConfig.livraison.color} strokeWidth={2} dot={false} name={chartConfig.livraison.label} />
+            </LineChart>
+          </ResponsiveContainer>
+        </ChartContainer>
+      </CardContent>
+    </Card>
+  );
+};
 
-export default ClientSatisfaction
+export default ClientSatisfaction;
