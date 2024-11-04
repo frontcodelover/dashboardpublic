@@ -53,7 +53,7 @@ export const Sidebar = () => {
   ];
 
   return (
-    <div className='flex fixed flex-col gap-4 w-[300px] min-w-[300px] border-r min-h-screen p-4 bg-gray-50'>
+    <div className='fixed flex-col gap-4 md:w-[300px] md:min-w-[300px] border-r min-h-screen p-4 bg-gray-50 z-10 hidden md:flex'>
       <div>
         <UserItem />
       </div>

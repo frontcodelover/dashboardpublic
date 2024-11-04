@@ -28,8 +28,8 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className='flex items-start justify-between'>
-        <Sidebar />
-        <main className='grid h-full w-full pl-[300px]'>
+				<Sidebar />
+        <main className='grid h-full w-full md:pl-[300px]'>
           <Header />
           {children}
         </main>
