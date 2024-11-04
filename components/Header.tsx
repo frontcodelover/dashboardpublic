@@ -26,10 +26,10 @@ export const Header = () => {
       <div className='flex items-center justify-end'>
         <DropdownMenu>
           <DropdownMenuTrigger>
-            <Button variant='outline' size='icon' className='relative'>
-							<div className={`absolute -top-2 -right-2 h-3 w-3 my-1 rounded-full ${notifications.find((x:any) => x.read === true) ? 'bg-green-500' : 'bg-transparent'}`} />
-							<BellIcon />
-            </Button>
+            <div className='relative border rounded-lg p-2'>
+              <div className={`absolute -top-2 -right-2 h-3 w-3 my-1 rounded-full ${notifications.find((x: any) => x.read === true) ? 'bg-green-500' : 'bg-transparent'}`} />
+              <BellIcon />
+            </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent align='end'>
             {notifications.map((notification: any, index: number) => (
