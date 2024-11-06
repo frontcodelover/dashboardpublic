@@ -1,50 +1,50 @@
-import { useState } from 'react';
-import { Calculator, Calendar, CreditCard, Settings, Smile, User } from 'lucide-react';
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from '@/components/ui/command';
+import { useState, useRef, useEffect } from 'react';
+import { Calendar, Smile } from 'lucide-react';
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 
 export function CommandDemo() {
   const [open, setOpen] = useState<boolean>(false);
+  const [inputValue, setInputValue] = useState<string>('');
+  const commandRef = useRef<HTMLDivElement>(null);
+
+  // Ouvrir le menu lors du focus
+  const handleFocus = () => {
+    setOpen(true);
+  };
+
+  // Fermer le menu lors d'un clic en dehors
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (commandRef.current && !commandRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
-    <Command className='rounded-lg border'>
-      <CommandInput placeholder='Type a command or search...' />
-      {open && (
-        <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup heading='Suggestions'>
-            <CommandItem>
-              <Calendar />
-              <span>Calendar</span>
-            </CommandItem>
-            <CommandItem>
-              <Smile />
-              <span>Search Emoji</span>
-            </CommandItem>
-            <CommandItem disabled>
-              <Calculator />
-              <span>Calculator</span>
-            </CommandItem>
-          </CommandGroup>
-          <CommandSeparator />
-          <CommandGroup heading='Settings'>
-            <CommandItem>
-              <User />
-              <span>Profile</span>
-              <CommandShortcut>⌘P</CommandShortcut>
-            </CommandItem>
-            <CommandItem>
-              <CreditCard />
-              <span>Billing</span>
-              <CommandShortcut>⌘B</CommandShortcut>
-            </CommandItem>
-            <CommandItem>
-              <Settings />
-              <span>Settings</span>
-              <CommandShortcut>⌘S</CommandShortcut>
-            </CommandItem>
-          </CommandGroup>
-        </CommandList>
-      )}
-    </Command>
+    <div ref={commandRef} className='relative'>
+      <Command className='border'>
+        <CommandInput placeholder='Tapez une commande ou recherchez...' onFocus={handleFocus} onValueChange={(value) => setInputValue(value)} />
+        {open && (
+          <CommandList className='absolute left-0 right-0 z-10 bg-white border rounded-b top-full'>
+            <CommandEmpty>Aucun résultat trouvé.</CommandEmpty>
+            <CommandGroup heading='Suggestions'>
+              <CommandItem className='cursor-pointer'>
+                <Calendar />
+                <span>Calendrier</span>
+              </CommandItem>
+              <CommandItem className='cursor-pointer'>
+                <Smile />
+                <span>Sourire</span>
+              </CommandItem>
+            </CommandGroup>
+          </CommandList>
+        )}
+      </Command>
+    </div>
   );
 }

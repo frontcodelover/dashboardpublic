@@ -21,12 +21,14 @@ export const Header = () => {
   ]);
 
   return (
-    <div className='grid grid-cols-2 gap-4 p-4 border-b'>
+		<div className='flex justify-between items-center gap-4 p-8 md:p-4 border-b'>
+			<div className='flex-1'>
       <CommandDemo />
+			</div>
       <div className='flex items-center justify-end'>
         <DropdownMenu>
           <DropdownMenuTrigger>
-            <div className='relative border rounded-lg p-2'>
+            <div className='relative border rounded p-3'>
               <div className={`absolute -top-2 -right-2 h-3 w-3 my-1 rounded-full ${notifications.find((x: any) => x.read === true) ? 'bg-green-500' : 'bg-transparent'}`} />
               <BellIcon />
             </div>

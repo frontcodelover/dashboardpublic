@@ -27,9 +27,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className='flex items-start justify-between'>
+      <body className='flex items-start justify-between max-w-screen'>
 				<Sidebar />
-        <main className='grid h-full w-full md:pl-[300px]'>
+        <main className='grid h-full md:pl-[300px] w-full max-w-screen'>
           <Header />
           {children}
         </main>
