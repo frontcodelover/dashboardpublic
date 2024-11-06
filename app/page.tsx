@@ -1,7 +1,8 @@
-import Budget from '@/components/graph/budget/Graph';
+
 import ClientSatisfaction from '@/components/graph/clientSatisfaction/Graph';
 import EmployeePerform from '@/components/graph/employee/Graph';
 import { Title } from '@/components/ui/title';
+import Budget from '@/components/graph/budget/Graph';
 
 export default function Home() {
   return (
@@ -10,8 +11,13 @@ export default function Home() {
         
         <div className="w-full flex flex-col gap-4">
           <Title text="Performance employé" heading="h2" />
-          <div className="w-full h-auto">
-            <EmployeePerform />
+					<div className="w-full flex gap-4 h-80">
+						<div>
+						<EmployeePerform />
+						</div>
+						<div className="grow">
+							<Budget />
+							</div>
           </div>
 				</div>
 				
@@ -22,14 +28,6 @@ export default function Home() {
           </div>
         </div>
 
-
-        {/* Budget global */}
-        <div className="w-full flex flex-col gap-4">
-          <Title text="Budget global" heading="h2" />
-          <div className="w-full h-auto">
-            <Budget />
-          </div>
-        </div>
       </div>
     </div>
   );

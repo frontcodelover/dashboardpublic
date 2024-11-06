@@ -1,8 +1,8 @@
 export const data = [
-    { id: "R&D", label: "Recherche et Développement", value: 25 },
-    { id: "Marketing", label: "Marketing", value: 20 },
-    { id: "Ventes", label: "Ventes", value: 15 },
-    { id: "RH", label: "Ressources Humaines", value: 10 },
-    { id: "IT", label: "Informatique", value: 15 },
-    { id: "Opérations", label: "Opérations", value: 15 }
+  { "month": "January", "desktop": 186, "mobile": 80 },
+  { "month": "February", "desktop": 305, "mobile": 200 },
+  { "month": "March", "desktop": 237, "mobile": 120 },
+  { "month": "April", "desktop": 73, "mobile": 190 },
+  { "month": "May", "desktop": 209, "mobile": 130 },
+  { "month": "June", "desktop": 214, "mobile": 140 }
 ];

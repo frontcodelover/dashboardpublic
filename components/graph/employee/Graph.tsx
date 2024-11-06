@@ -11,11 +11,10 @@ export function EmployeeGraph() {
   }, []);
 
   return (
-    <Card className='flex flex-col p-4 rounded-xl'>
-      <div className='text-gray-500'>January - June 2024</div>
-      <div className='flex-1 pb-0'>
-        <ChartContainer className='mx-auto aspect-square max-h-[250px]' config={employeeChartConfig}>
-          <PieChart width={250} height={250}>
+    <Card className='p-4 rounded-xl h-80'>
+        <ChartContainer className='mx-auto aspect-square' config={employeeChartConfig}>
+      <div className='flex-1 flex items-center justify-center w-auto h-auto'>
+          <PieChart width={200} height={200}>
             <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
             <Pie data={employeeData} dataKey='value' nameKey='category' innerRadius={60} outerRadius={80} strokeWidth={5}>
               <Label
@@ -37,10 +36,10 @@ export function EmployeeGraph() {
               />
             </Pie>
           </PieChart>
-        </ChartContainer>
       </div>
+        </ChartContainer>
 
-      <div className='leading-none text-muted-foreground flex gap-2'>
+      <div className='leading-none text-muted-foreground flex gap-2 -mt-6'>
         {employeeData.map((item, index) => (
           <div key={index} className='flex items-center gap-2'>
             <div className='w-3 h-3 rounded-full' style={{ backgroundColor: item.fill }} />
